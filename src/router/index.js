@@ -15,6 +15,20 @@ const router = createRouter({
       component: () => import('@/views/Home.vue'),
       meta: { requiresAuth: true },
     },
+
+    // Pessoas - Pacientes
+    {
+      path: '/pacientes',
+      name: 'pacientes',
+      component: () => import('@/views/pessoas/PacienteList.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/pacientes/form/:id?',
+      name: 'paciente-form',
+      component: () => import('@/views/pessoas/PacienteForm.vue'),
+      meta: { requiresAuth: true },
+    },
   ],
 })
 
