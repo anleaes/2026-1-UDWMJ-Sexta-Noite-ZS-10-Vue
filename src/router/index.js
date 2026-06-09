@@ -43,6 +43,19 @@ const router = createRouter({
       component: () => import('@/views/pessoas/ProfissionalForm.vue'),
       meta: { requiresAuth: true },
     },
+    // Unidades
+{
+  path: '/unidades',
+  name: 'unidades',
+  component: () => import('@/views/unidades/UnidadeList.vue'),
+  meta: { requiresAuth: true },
+},
+{
+  path: '/unidades/form/:id?',
+  name: 'unidade-form',
+  component: () => import('@/views/unidades/UnidadeForm.vue'),
+  meta: { requiresAuth: true },
+},
   ],
 })
 
