@@ -92,6 +92,19 @@ const router = createRouter({
   component: () => import('@/views/lotes/LoteForm.vue'),
   meta: { requiresAuth: true },
 },
+
+{
+  path: '/calendario',
+  name: 'calendario',
+  component: () => import('@/views/calendario/CalendarioList.vue'),
+  meta: { requiresAuth: true },
+},
+{
+  path: '/calendario/form/:id?',
+  name: 'calendario-form',
+  component: () => import('@/views/calendario/CalendarioForm.vue'),
+  meta: { requiresAuth: true },
+},
   ],
 })
 
