@@ -68,6 +68,18 @@ const router = createRouter({
   component: () => import('@/views/vacinas/VacinaForm.vue'),
   meta: { requiresAuth: true },
 },
+{
+  path: '/lotes',
+  name: 'lotes',
+  component: () => import('@/views/lotes/LoteList.vue'),
+  meta: { requiresAuth: true },
+},
+{
+  path: '/lotes/form/:id?',
+  name: 'lote-form',
+  component: () => import('@/views/lotes/LoteForm.vue'),
+  meta: { requiresAuth: true },
+},
   ],
 })
 
