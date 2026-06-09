@@ -29,6 +29,20 @@ const router = createRouter({
       component: () => import('@/views/pessoas/PacienteForm.vue'),
       meta: { requiresAuth: true },
     },
+
+    // Pessoas - Profissionais
+    {
+      path: '/profissionais',
+      name: 'profissionais',
+      component: () => import('@/views/pessoas/ProfissionalList.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/profissionais/form/:id?',
+      name: 'profissional-form',
+      component: () => import('@/views/pessoas/ProfissionalForm.vue'),
+      meta: { requiresAuth: true },
+    },
   ],
 })
 
