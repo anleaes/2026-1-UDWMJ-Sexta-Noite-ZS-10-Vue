@@ -56,6 +56,18 @@ const router = createRouter({
   component: () => import('@/views/unidades/UnidadeForm.vue'),
   meta: { requiresAuth: true },
 },
+{
+  path: '/vacinas',
+  name: 'vacinas',
+  component: () => import('@/views/vacinas/VacinaList.vue'),
+  meta: { requiresAuth: true },
+},
+{
+  path: '/vacinas/form/:id?',
+  name: 'vacina-form',
+  component: () => import('@/views/vacinas/VacinaForm.vue'),
+  meta: { requiresAuth: true },
+},
   ],
 })
 
