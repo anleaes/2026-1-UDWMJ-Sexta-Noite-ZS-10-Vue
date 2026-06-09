@@ -57,6 +57,18 @@ const router = createRouter({
   meta: { requiresAuth: true },
 },
 {
+  path: '/perfis',
+  name: 'perfis',
+  component: () => import('@/views/perfis/PerfilList.vue'),
+  meta: { requiresAuth: true },
+},
+{
+  path: '/perfis/form/:id?',
+  name: 'perfil-form',
+  component: () => import('@/views/perfis/PerfilForm.vue'),
+  meta: { requiresAuth: true },
+},
+{
   path: '/vacinas',
   name: 'vacinas',
   component: () => import('@/views/vacinas/VacinaList.vue'),
