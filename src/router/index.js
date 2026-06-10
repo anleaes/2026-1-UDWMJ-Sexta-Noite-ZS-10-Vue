@@ -4,6 +4,19 @@ import { useAuthStore } from '@/stores/auth'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // Gestão - Situação Vacinal
+    {
+      path: '/situacoes',
+      name: 'situacoes',
+      component: () => import('@/views/situacao/SituacaoList.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/situacoes/form/:id?',
+      name: 'situacao-form',
+      component: () => import('@/views/situacao/SituacaoForm.vue'),
+      meta: { requiresAuth: true },
+    },
     {
       path: '/login',
       name: 'login',
