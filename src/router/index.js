@@ -160,6 +160,19 @@ const router = createRouter({
   component: () => import('@/views/calendario/CalendarioForm.vue'),
   meta: { requiresAuth: true },
 },
+// Notificações
+{
+  path: '/notificacoes',
+  name: 'notificacoes',
+  component: () => import('@/views/notificacoes/NotificacaoList.vue'),
+  meta: { requiresAuth: true },
+},
+{
+  path: '/notificacoes/form/:id?',
+  name: 'notificacao-form',
+  component: () => import('@/views/notificacoes/NotificacaoForm.vue'),
+  meta: { requiresAuth: true },
+},
   ],
 })
 
