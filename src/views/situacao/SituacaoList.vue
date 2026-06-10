@@ -7,7 +7,7 @@ import BaseLayout from '@/components/BaseLayout.vue'
 import BaseButton from '@/components/BaseButton.vue'
 
 const router = useRouter()
-const { itens, carregar } = useLista('/situacoes/', 'Não foi possível carregar as situações vacinais.')
+const { itens, carregar } = useLista('/situacao/', 'Não foi possível carregar as situações vacinais.')
 
 // Trazemos os nomes dos relacionamentos (Chaves Estrangeiras)
 const nomePaciente = useMapaNomes('/pessoas/pacientes/', (p) => p.nome)
@@ -24,7 +24,7 @@ function editar(id) {
 async function excluir(id) {
   if (!confirm('Deseja excluir este registro?')) return
   try {
-    await api.delete(`/situacoes/${id}/`)
+    await api.delete(`/situacao/${id}/`)
     carregar()
   } catch {
     alert('Não foi possível excluir.')
@@ -44,7 +44,7 @@ async function excluir(id) {
           <strong>Paciente: {{ nomePaciente(item.paciente) }}</strong>
           <p>Vacina: {{ nomeVacina(item.vacina) }}</p>
           <p>Status: {{ item.status }}</p>
-          <p v-if="item.data_proxima_dose">Próxima Dose: {{ item.data_proxima_dose }}</p>
+          <p v-if="item.observacao">Observação: {{ item.observacao }}</p>
         </div>
         <div class="acoes">
           <BaseButton variante="secundaria" @click="editar(item.id)">Editar</BaseButton>
