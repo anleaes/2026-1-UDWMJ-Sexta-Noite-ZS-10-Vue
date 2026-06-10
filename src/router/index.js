@@ -4,6 +4,20 @@ import { useAuthStore } from '@/stores/auth'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // Gestão - Doses por Atendimento
+    {
+      path: '/doses',
+      name: 'doses', // Nome exato exigido pela Home do sistema
+      component: () => import('@/views/atendimentos/DoseList.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/doses/form/:id?',
+      name: 'dose-form',
+      component: () => import('@/views/atendimentos/DoseForm.vue'),
+      meta: { requiresAuth: true },
+    },
+
     // Atendimento - Gestão de Visitas
     {
       path: '/atendimentos',
