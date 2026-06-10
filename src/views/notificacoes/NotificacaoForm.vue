@@ -13,7 +13,7 @@ const route = useRoute()
 const router = useRouter()
 const editandoId = route.params.id || null
 
-const { itens: pacientes } = useColecao('/pacientes/', (p) => ({ valor: p.id, rotulo: p.nome }))
+const { itens: pacientes } = useColecao('/pessoas/pacientes/', (p) => ({ valor: p.id, rotulo: p.nome }))
 
 const opcoesTipo = [
   { valor: 'lembrete', rotulo: 'Lembrete' },

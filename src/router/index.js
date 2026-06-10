@@ -160,6 +160,19 @@ const router = createRouter({
   component: () => import('@/views/calendario/CalendarioForm.vue'),
   meta: { requiresAuth: true },
 },
+// Campanhas
+{
+  path: '/campanhas',
+  name: 'campanhas',
+  component: () => import('@/views/campanhas/CampanhaList.vue'),
+  meta: { requiresAuth: true },
+},
+{
+  path: '/campanhas/form/:id?',
+  name: 'campanha-form',
+  component: () => import('@/views/campanhas/CampanhaForm.vue'),
+  meta: { requiresAuth: true },
+},
 // Notificações
 {
   path: '/notificacoes',

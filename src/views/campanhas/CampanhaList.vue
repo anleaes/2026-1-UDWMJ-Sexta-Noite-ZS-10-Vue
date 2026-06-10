@@ -2,25 +2,24 @@
 import { useRouter } from 'vue-router'
 import api from '@/services/api'
 import useLista from '@/composables/useLista'
-import useMapaNomes from '@/composables/useMapaNomes'
 import BaseLayout from '@/components/BaseLayout.vue'
 import BaseButton from '@/components/BaseButton.vue'
 
 const router = useRouter()
-const { itens, carregar } = useLista('/notificacoes/', 'Não foi possível carregar notificações.')
-
-const nomePaciente = useMapaNomes('/pessoas/pacientes/', (p) => p.nome)
+const { itens, carregar } = useLista('/campanhas/', 'Não foi possível carregar as campanhas.')
 
 function novo() {
-  router.push({ name: 'notificacao-form' })
+  router.push({ name: 'campanha-form' })
 }
+
 function editar(id) {
-  router.push({ name: 'notificacao-form', params: { id } })
+  router.push({ name: 'campanha-form', params: { id } })
 }
+
 async function excluir(id) {
-  if (!confirm('Deseja excluir esta notificação?')) return
+  if (!confirm('Deseja excluir esta campanha?')) return
   try {
-    await api.delete(`/notificacoes/${id}/`)
+    await api.delete(`/campanhas/${id}/`)
     carregar()
   } catch {
     alert('Não foi possível excluir.')
@@ -29,19 +28,19 @@ async function excluir(id) {
 </script>
 
 <template>
-  <BaseLayout titulo="Notificações" voltar-para="home">
-    <BaseButton @click="novo">+ Nova Notificação</BaseButton>
+  <BaseLayout titulo="Campanhas de Vacinação" voltar-para="home">
+    <BaseButton @click="novo">+ Nova Campanha</BaseButton>
 
-    <p v-if="itens.length === 0" class="vazio">Nenhuma notificação cadastrada.</p>
+    <p v-if="itens.length === 0" class="vazio">Nenhuma campanha cadastrada.</p>
 
     <ul class="lista">
       <li v-for="item in itens" :key="item.id" class="card">
         <div>
-          <strong>{{ item.titulo }}</strong>
-          <p>Paciente: {{ nomePaciente(item.paciente) }}</p>
-          <p>Tipo: {{ item.tipo }}</p>
-          <p>{{ item.mensagem }}</p>
-          <p>{{ item.lida ? '✅ Lida' : '📬 Não lida' }}</p>
+          <strong>{{ item.nome }}</strong>
+          <p v-if="item.descricao">{{ item.descricao }}</p>
+          <p>Período: {{ item.data_inicio }} a {{ item.data_fim }}</p>
+          <p v-if="item.publico_alvo">Público-alvo: {{ item.publico_alvo }}</p>
+          <p>{{ item.ativa ? '🟢 Ativa' : '⚪ Inativa' }}</p>
         </div>
         <div class="acoes">
           <BaseButton variante="secundaria" @click="editar(item.id)">Editar</BaseButton>

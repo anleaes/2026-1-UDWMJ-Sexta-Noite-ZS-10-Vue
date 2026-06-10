@@ -55,7 +55,7 @@ async function excluir(id) {
 .card {
   background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 10px;
   display: flex; justify-content: space-between; gap: 16px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);de
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 .card p { color: #4b5563; font-size: 14px; margin-top: 2px; }
 .acoes { display: flex; gap: 8px; align-items: flex-start; }

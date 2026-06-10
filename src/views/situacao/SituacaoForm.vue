@@ -6,7 +6,7 @@ import { mostrarErroApi } from '@/services/erros'
 import useColecao from '@/composables/useColecao'
 import BaseLayout from '@/components/BaseLayout.vue'
 import BaseButton from '@/components/BaseButton.vue'
-import CampoData from '@/components/CampoData.vue'
+import CampoTexto from '@/components/CampoTexto.vue'
 import Seletor from '@/components/Seletor.vue'
 
 const route = useRoute()
@@ -20,7 +20,7 @@ const { itens: vacinas } = useColecao('/vacinas/', (v) => ({ valor: v.id, rotulo
 // Opções fixas de status
 const opcoesStatus = [
   { valor: 'em_dia', rotulo: 'Em Dia' },
-  { valor: 'atrasada', rotulo: 'Atrasada' },
+  { valor: 'atrasado', rotulo: 'Atrasado' },
   { valor: 'pendente', rotulo: 'Pendente' }
 ]
 
@@ -28,19 +28,19 @@ const form = reactive({
   paciente: '',
   vacina: '',
   status: '',
-  data_proxima_dose: ''
+  observacao: ''
 })
 const erros = ref({})
 
 onMounted(async () => {
   if (!editandoId) return
   try {
-    const { data } = await api.get(`/situacoes/${editandoId}/`)
+    const { data } = await api.get(`/situacao/${editandoId}/`)
     Object.assign(form, {
       paciente: data.paciente,
       vacina: data.vacina,
       status: data.status,
-      data_proxima_dose: data.data_proxima_dose || ''
+      observacao: data.observacao || ''
     })
   } catch {
     alert('Não foi possível carregar o registro.')
@@ -62,9 +62,9 @@ async function salvar() {
   const dados = { ...form }
   try {
     if (editandoId) {
-      await api.put(`/situacoes/${editandoId}/`, dados)
+      await api.put(`/situacao/${editandoId}/`, dados)
     } else {
-      await api.post('/situacoes/', dados)
+      await api.post('/situacao/', dados)
     }
     router.push({ name: 'situacoes' })
   } catch (err) {
@@ -79,7 +79,7 @@ async function salvar() {
       <Seletor v-model="form.paciente" label="Paciente *" :opcoes="pacientes" :erro="erros.paciente" />
       <Seletor v-model="form.vacina" label="Vacina *" :opcoes="vacinas" :erro="erros.vacina" />
       <Seletor v-model="form.status" label="Status *" :opcoes="opcoesStatus" :erro="erros.status" />
-      <CampoData v-model="form.data_proxima_dose" label="Data da Próxima Dose" />
+      <CampoTexto v-model="form.observacao" label="Observação" />
       
       <BaseButton type="submit">{{ editandoId ? 'Atualizar' : 'Salvar' }}</BaseButton>
     </form>

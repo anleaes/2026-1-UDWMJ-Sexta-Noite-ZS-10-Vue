@@ -36,7 +36,7 @@ const grupos = [
     itens: [
       { titulo: 'Campanhas', rota: 'campanhas' },
       { titulo: 'Notificações', rota: 'notificacoes' },
-      { titulo: 'Situação Vacinal', rota: 'situacao' },
+      { titulo: 'Situação Vacinal', rota: 'situacoes' },
     ],
   },
 ]
