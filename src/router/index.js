@@ -4,6 +4,20 @@ import { useAuthStore } from '@/stores/auth'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // Gestão - Registos Finais
+    {
+      path: '/registros',
+      name: 'registros',
+      component: () => import('@/views/registros/RegistroList.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/registros/form/:id?',
+      name: 'registro-form',
+      component: () => import('@/views/registros/RegistroForm.vue'),
+      meta: { requiresAuth: true },
+    },
+
     // Gestão - Doses por Atendimento
     {
       path: '/doses',
